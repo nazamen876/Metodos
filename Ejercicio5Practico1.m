@@ -5,18 +5,19 @@
 %}
 
 
-N = 0, e = 0;
+N = 0;
+e = 0;
 
 
 function n = NumeroFactorizado (pNum)
-  numFactorizado = pNum
+  numFactorizado = pNum;
 
   if (pNum == 0 || pNum == 1)
     n = 1;
     return;
   else
     do
-      pNum = pNum - 1;5
+      pNum = pNum - 1;
 
       numFactorizado = numFactorizado * pNum;
     until (pNum == 1)
@@ -33,7 +34,7 @@ for i=0:N
   e = e + 1 / NumeroFactorizado(i);
 end
 
-fprintf("e: %d", e);
+fprintf("e: %.10f", e);
 
 
 

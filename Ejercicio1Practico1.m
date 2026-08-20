@@ -1,17 +1,17 @@
 clc
 clear
 close all
-%{
-numerosTotales = input("Ingrese la cantidad de numeros que desea sumar ");
+
+numerosTotales = input("Ingrese la cantidad de numeros que desea sumar: ");
 
 sumaTotal = 0;
 
 for i = 1:numerosTotales
-  x = input("Ingrese un numero a sumar");
+  x = input("Ingrese un numero a sumar:  ");
   sumaTotal += x;
 end
 fprintf("La suma total es: %.2f\n", sumaTotal);
-%}
+
 
 sumaN255 = 0;
 
