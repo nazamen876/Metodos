@@ -1,4 +1,4 @@
-n = 4;
+n = 5;
 tolerancia = 10^(-n);
 
 pi_aprox = 0;
