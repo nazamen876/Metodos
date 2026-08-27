@@ -1,4 +1,4 @@
-n = 5;
+n = 3;
 tolerancia = 10^(-n);
 
 pi_aprox = 0;
@@ -16,3 +16,4 @@ tiempo_total = cputime() - t_inicio;
 
 printf("Decimales: %d | Términos: %d | Pi aprox: %.6f | Tiempo: %.4f s\n", ...
        n, k, pi_aprox, tiempo_total);
+       pi

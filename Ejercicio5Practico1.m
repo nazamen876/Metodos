@@ -30,12 +30,11 @@ endfunction
 N = input("Ingrese el dato de entrada: ");
 
 for i=0:N
+
+  fprintf("Valor e: %.10f \t\t Division: 1 / %d  \n", e, factorial(i) );
   e = e + 1 / factorial(i);
+
 end
-
-fprintf("e: %.10f\n", e);
-
-
-
+%Fin for
 
 
