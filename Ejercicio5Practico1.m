@@ -4,11 +4,10 @@
 		 con diferentes cantidades de sumandos y sacar conclusiones.
 %}
 
-
 N = 0;
 e = 0;
 
-
+%{
 function n = NumeroFactorizado (pNum)
   numFactorizado = pNum;
 
@@ -26,15 +25,15 @@ function n = NumeroFactorizado (pNum)
   endif
 
 endfunction
-
+%}
 
 N = input("Ingrese el dato de entrada: ");
 
 for i=0:N
-  e = e + 1 / NumeroFactorizado(i);
+  e = e + 1 / factorial(i);
 end
 
-fprintf("e: %.10f", e);
+fprintf("e: %.10f\n", e);
 
 
 
