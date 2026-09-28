@@ -1,4 +1,9 @@
 function [raiz, iter] = interpolacionLineal(f, a, b, tol, max_iter)
+
+  if nargin < 5
+    max_iter = 100;
+  endif
+
   if f(a) * f(b) >= 0
     error('La funcion no cambia de signo en el intervalo [a,b].');
   endif
@@ -32,6 +37,10 @@ function [raiz, iter] = interpolacionLineal(f, a, b, tol, max_iter)
       a = x_act;
     endif
   endwhile
+
+  if iter >= max_iter
+    warning('Se alcanzó el máximo de iteraciones sin llegar a la tolerancia.');
+  endif
 
   raiz = x_act;
 endfunction
