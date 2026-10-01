@@ -3,7 +3,7 @@ function intervalos = tanteo(f, a, b, dx)
   intervalos = [];
   x1 = a;
   while x1 < b
-    x2 = min(x1 + dx, b);          % que no se pase del final
+    x2 = min(x1 + dx, b);          % Evita pasarse
     if f(x1) * f(x2) < 0
       intervalos = [intervalos; x1 x2];
     end

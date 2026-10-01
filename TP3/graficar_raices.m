@@ -1,7 +1,7 @@
 function raices = graficar_raices(f, a, b)
-  % f: function handle (usar .* y .^ adentro)
+  % f: funcion
   % [a b]: intervalo donde se grafica
-  % raices: vector con las raíces aproximadas que encontró
+  % raices: vector con las raíces aproximadas que se encontraron
 
   % --- Cálculo de raíces: cambio de signo en una grilla fina ---
   x  = linspace(a, b, 10000);
@@ -15,19 +15,17 @@ function raices = graficar_raices(f, a, b)
   figure;
   fplot(f, [a b], 'b-');
   hold on;
-  plot([a b], [0 0], 'k--');                                % eje y = 0
+  plot([a b], [0 0], 'k--'); grid on;   % eje y = 0
   plot(raices, zeros(size(raices)), 'ro', 'MarkerFaceColor', 'r', 'MarkerSize', 8);
+
     for k = 1:numel(raices)
     text(raices(k), 0, sprintf('  x = %.2f', raices(k)), ...
          'VerticalAlignment', 'bottom', 'HorizontalAlignment', 'left');
+         grid on;
     endfor
-  grid on;
+
   xlabel('x');
   ylabel('f(x)');
   title('Búsqueda gráfica de raíces');
   hold off;
-
-  % --- Mostrar las raíces por consola ---
-  printf('Raíces aproximadas (gráfico):\n');
-  printf('  x = %.4f\n', raices);
 end
