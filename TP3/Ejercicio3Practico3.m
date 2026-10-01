@@ -14,7 +14,7 @@ function MetodoIteracion()
 
   f = @(x) 40 * log(400 / (500 - x)) + 200;
 
-  opcion = input("Desea aplicar la aceleración de Aitken? (1. Sí/2. No): ");
+  opcion = input("Desea aplicar la aceleracion de Aitken? (1. Sí/2. No): ");
 
   x0 = 200;
   tolerancia = 10^-4;
@@ -64,17 +64,20 @@ function MetodoIteracion()
   printf("Resultado aproximado: x = %.6f\n", x_final);
 
   % Gráfico de las funciones %
-  figure;
-  x_vals = linspace(180, 220, 400);
-  y_vals = arrayfun(f, x_vals);
+  opcion = input("Graficar las raices?(1. Si/2. No)");
+  if opcion == 1
+    figure;
+    x_vals = linspace(180, 220, 400);
+    y_vals = arrayfun(f, x_vals);
 
-  plot(x_vals, x_vals, 'r--', 'LineWidth', 1.5); hold on;
-  plot(x_vals, y_vals, 'b-', 'LineWidth', 2);
-  plot(x_final, x_final, 'ro', 'MarkerSize', 8, 'MarkerFaceColor', 'r');
+    plot(x_vals, x_vals, 'r--', 'LineWidth', 1.5); hold on;
+    plot(x_vals, y_vals, 'b-', 'LineWidth', 2);
+    plot(x_final, x_final, 'ro', 'MarkerSize', 8, 'MarkerFaceColor', 'r');
 
-  xlabel('x');
-  ylabel('y');
-  title("Método de Iteracion de Punto Fijo y Aceleración de Aitken");
+    xlabel('x');
+    ylabel('y');
+    title("Método de Iteracion de Punto Fijo y Aceleración de Aitken");
+  endif
 endfunction
 
 
