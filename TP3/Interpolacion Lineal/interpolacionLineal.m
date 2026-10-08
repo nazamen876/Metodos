@@ -12,8 +12,8 @@ function [raiz, iter] = interpolacionLineal(f, a, b, tol, max_iter)
   x_act = a; % Punto de referencia inicial
   error_act = tol + 1; % Fuerza a entrar al bucle en la primera vuelta
   
-  % Preasignamos memoria para el historial
-  historial = zeros(max_iter, 4);
+  % Preasignamos memoria para el historial (iter, a, b, x_act, f(x_act), error_act)
+  historial = zeros(max_iter, 6);
 
   while error_act > tol && iter < max_iter
     x_ant = x_act;
@@ -28,9 +28,9 @@ function [raiz, iter] = interpolacionLineal(f, a, b, tol, max_iter)
     % En la primera iteracion no se compara contra el valor inicial 'a'
     if iter > 1
       error_act = abs(x_act - x_ant);
-      historial(iter, :) = [iter, x_act, f(x_act), error_act];
+      historial(iter, :) = [iter, a, b, x_act, f(x_act), error_act];
     else
-      historial(iter, :) = [iter, x_act, f(x_act), NaN];
+      historial(iter, :) = [iter, a, b, x_act, f(x_act), NaN];
     endif
 
     % Verificacion de raiz exacta
@@ -51,13 +51,13 @@ function [raiz, iter] = interpolacionLineal(f, a, b, tol, max_iter)
   % Imprimimos la tabla con el historial al finalizar
   historial = historial(1:iter, :);
   fprintf('\n>>> METODO DE INTERPOLACION LINEAL <<<\n');
-  fprintf('%-5s | %-12s | %-12s | %-12s\n', 'Iter', 'x_k', 'f(x_k)', 'Error Est.');
-  fprintf('-------------------------------------------------------\n');
+  fprintf('%-5s | %-12s | %-12s | %-12s | %-12s | %-12s\n', 'Iter', 'a', 'b', 'x_k', 'f(x_k)', 'Error Est.');
+  fprintf('--------------------------------------------------------------------------------\n');
   for i = 1:size(historial, 1)
-    if isnan(historial(i, 4))
-      fprintf('%-5d | %12.6f | %12.6f | %12s\n', historial(i, 1), historial(i, 2), historial(i, 3), '-');
+    if isnan(historial(i, 6))
+      fprintf('%-5d | %12.6f | %12.6f | %12.6f | %12.6f | %12s\n', historial(i, 1), historial(i, 2), historial(i, 3), historial(i, 4), historial(i, 5), '-');
     else
-      fprintf('%-5d | %12.6f | %12.6f | %12.6e\n', historial(i, 1), historial(i, 2), historial(i, 3), historial(i, 4));
+      fprintf('%-5d | %12.6f | %12.6f | %12.6f | %12.6f | %12.6e\n', historial(i, 1), historial(i, 2), historial(i, 3), historial(i, 4), historial(i, 5), historial(i, 6));
     endif
   endfor
   fprintf('\nRaiz final aproximada: x = %f\n', x_act);
