@@ -198,7 +198,7 @@ fprintf('\n>>> METODO 2: NEWTON-RAPHSON <<<\n');
 tic;
 c0_nr = cputime;
 if exist('NewtonRaphson', 'file') == 2
-  [raiz_nr, iter_nr] = NewtonRaphson(f, df, d2f, a, b, tol);
+  [raiz_nr, iter_nr] = NewtonRaphson(f, a, b, tol);
 else
   [raiz_nr, iter_nr] = NewtonRaphson_extraido(f, df, d2f, a, b, tol);
 endif

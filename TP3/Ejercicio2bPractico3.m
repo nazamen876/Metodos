@@ -21,16 +21,18 @@ endif
 
 disp('Intervalos con cambio de signo:');
 disp(intervalos);
+tol = input("Ingrese tolerancia E (ej: 0.001): ");
+
 
 % --- Primer Intervalo [24, 26] ---
 a = intervalos(1,1);
 b = intervalos(1,2);
-NewtonRaphson(f,a,b);
+NewtonRaphson(f,a,b, tol);
 
 % --- Segundo intervalo [250, 252] ---
 a = intervalos(2,1);
 b = intervalos(2,2);
-NewtonRaphson(f,a,b);
+NewtonRaphson(f,a,b, tol);
 
 % --- Grafico---
 opcion = input("Desea graficar las raices?(1 - Si/2- No): ");

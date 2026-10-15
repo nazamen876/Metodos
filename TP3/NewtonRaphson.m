@@ -1,4 +1,4 @@
-function [x, it] = NewtonRaphson(f,a,b)
+function [x, it] = NewtonRaphson(f,a,b, tol)
   pkg load symbolic
   warning('off', 'OctSymPy:sym:rationalapprox');
   1;
@@ -9,10 +9,8 @@ function [x, it] = NewtonRaphson(f,a,b)
   df = matlabFunction(dfs, 'vars', xs);
   d2f = matlabFunction(d2fs, 'vars', xs);
 
-  tolerancia = input("Tolerancia E (ej: 0.001): ");
   t = linspace(a, b, 2001);
 
-  printf("Intervalo elegido [%g, %g]\n", a, b);
 
   if f(a) * d2f(a) > 0
     x = a;
@@ -32,7 +30,7 @@ function [x, it] = NewtonRaphson(f,a,b)
     error = abs(xn - x);
     printf("x%d  | %.6f | %.6f | %.6f | %.6f\n", it, xn, f(xn), df(xn), error);
     x = xn;
-    if error < tolerancia, break; end
+    if error < tol, break; end
   endfor
 
   printf('----------------------------------------------------------\n');
