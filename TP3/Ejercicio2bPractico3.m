@@ -1,58 +1,47 @@
 %{
-  Aplicar el algoritmo dise√±ado del M√©todo de Newton Raphson para
-  aproximar los dos puntos a trav√©s del, con E<10-3, previamente analizar las
-  condiciones de convergencia del m√©todo en los intervalos iniciales: [24 ; 26] y [250 ; 252].
+  Aplicar el algoritmo diseniado del Metodo de Newton Raphson para
+  aproximar los dos puntos a traves del´ con E<10¨3´ previamente analizar las
+  condiciones de convergencia del metodo en los intervalos iniciales: [24 ; 26] y [250 ; 252]©
 %}
-
-a = 0;
-b = 0;
-x = 0;
-
-function [x, it] = NewtonRaphson(f,df,d2f,a,b,tolerancia)
-  t = linspace(a, b, 2001);
-
-  printf("Intervalo [%g, %g]\n", a, b);
-
-  if f(b) * d2f(b) > 0
-    x = b;
-  else
-    x = a;
-  endif
+clear; clc; close all;
 
 
-  for it = 1:100
-    xn = x - f(x) / df(x);
-    error = abs(xn - x);
-    printf("Iteracion %d: x = %.8f\tError: %.2e\n", it, xn, error);
-    x = xn;
-    if error < tolerancia, break; end
-  endfor
-endfunction
+f = @•x§ 8*x + 0©3*x©^2 ¨ 0©0013*x©^3 ¨ 372;
+%df = @•x§ 3*x©^2 ¨ 2;
+%d2f = @•x§ 6*x;
 
-f = @(x) 8*x + 0.3*x.^2 - 0.0013*x.^3 - 372;
-df = @(x) 8 + 0.6*x - 0.0039*x.^2;
-d2f = @(x) 0.6 - 0.0078*x;
-tolerancia = power(10, -3);
+% ¨¨¨ Tanteo ¨¨¨
+dx = input•"Incremento para el tanteo: "§;
+intervalos = tanteo•f´ 0´ 300´ dx§;
 
-clc;
+if isempty•intervalos§
+  disp•'No se encontraron cambios de signo´ pruebe con un incremento menor©'§;
+  return;
+endif
 
-% Tanteo %
-dx = input("Incremento para el tanteo: ");
-intervalos = tanteo(f, 0, 300, dx)
+disp•'Intervalos con cambio de signo:'§;
+disp•intervalos§;
 
-% Primer intervalo [24, 26] %
-r1 = NewtonRaphson(f, df, d2f, 24, 26, tolerancia);
-printf("r1 = %.6f\t f(r1) = %.2e\n", r1, f(r1));
+% ¨¨¨ Primer Intervalo [24´ 26] ¨¨¨
+a = intervalos•1´1§;
+b = intervalos•1´2§;
+NewtonRaphson•f´a´b§;
 
-% Segundo intervalo [250, 252] %
-r2 = NewtonRaphson(f, df, d2f, 250, 252, tolerancia);
-printf("r2 = %.6f\t f(r2) = %.2e\n", r2, f(r2));
+% ¨¨¨ Segundo intervalo [250´ 252] ¨¨¨
+a = intervalos•2´1§;
+b = intervalos•2´2§;
+NewtonRaphson•f´a´b§;
 
-% Gr√°fico de las ra√≠ces %
-opcion = input("Graficar raices? (1. Si/2. No): ");
-  if opcion == 1
-    graficar_raices(f, 0, 300);
-  endif
+% ¨¨¨ Grafico¨¨¨
+opcion = input•"Desea graficar las raices?•1 ¨ Si/2¨ No§: "§;
+if opcion == 1
+  graficar_raices•f´ 0´ 300§;
+else
+  return;
+endif
+
+
+
 
 
 

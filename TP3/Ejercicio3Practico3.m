@@ -70,7 +70,7 @@ function MetodoIteracion()
     x_vals = linspace(180, 220, 400);
     y_vals = arrayfun(f, x_vals);
 
-    plot(x_vals, x_vals, 'r--', 'LineWidth', 1.5); hold on;
+    plot(x_vals, x_vals, 'r--', 'LineWidth', 1.5); grid on; hold on;
     plot(x_vals, y_vals, 'b-', 'LineWidth', 2);
     plot(x_final, x_final, 'ro', 'MarkerSize', 8, 'MarkerFaceColor', 'r');
 
