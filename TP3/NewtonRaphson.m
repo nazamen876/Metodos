@@ -11,47 +11,30 @@ function [x, it] = NewtonRaphson(f,a,b, tol)
 
   t = linspace(a, b, 2001);
 
-  %{
-  if f(a) * d2f(a) > 0
-    x = a;
-  elseif
-    f(b) * d2f(b) > 0;
-    x = b;
-  else
-    printf("No se puede garantizar la convergencia global\n");
-    x = a;
-  endif
-  %}
 
-  % Verificación de Condiciones de Fourier
+  %--- Verificación de Condiciones de Fourier ---
   fprintf('\n--- Verificacion de Condiciones de Fourier en [%.4f, %.4f] ---\n', a, b);
 
+  % Bolzano
   if f(a) * f(b) > 0
     error('No se cumple Bolzano: f(a) y f(b) tienen el mismo signo.');
   else
     fprintf('Bolzano: Cumple (existe al menos una raiz).\n');
   endif
 
-  % Evaluacion numerica de derivadas para verificar Fourier
-  n_pts = 100;
-  x_eval = linspace(a, b, n_pts);
-  h = max(abs(b - a) * 1e-5, 1e-6);
-
-  df_vals = (arrayfun(f, x_eval + h) - arrayfun(f, x_eval - h)) ./ (2 * h);
-  d2f_vals = (arrayfun(f, x_eval + h) - 2 * arrayfun(f, x_eval) + arrayfun(f, x_eval - h)) ./ (h^2);
-
-  if min(df_vals) * max(df_vals) > 0
+  if all(df(t) > 0 || df(t) < 0)
     fprintf('Monotonia: Cumple (f''(x) no cambia de signo, raiz unica).\n');
   else
     fprintf('Monotonia: No cumple (f''(x) cambia de signo en el intervalo).\n');
   endif
 
-  if min(d2f_vals) * max(d2f_vals) > 0
+  if all(d2f(t) > 0 || d2f(t) < 0)
     fprintf('Concavidad: Cumple (f''''(x) no cambia de signo, concavidad constante).\n');
   else
     fprintf('Concavidad: No cumple (f''''(x) cambia de signo, posible punto de inflexion).\n');
   endif
 
+  % Condicion de Fourier para determinar el punto fijo
   if f(a) * d2f(a) > 0
     fprintf('Punto fijo de Fourier: x = %.4f (f(a)*f''''(a) > 0).\n', a);
     x = a;
@@ -64,6 +47,8 @@ function [x, it] = NewtonRaphson(f,a,b, tol)
   endif
   fprintf('-----------------------------------------------------------------\n\n');
 
+
+  % Iteracion de Newton Raphson
   printf('It.  | %-8s | %-8s | %-9s | %-8s\n', 'xn', 'f(xn)', 'df(xn)', 'Error');
   printf('----------------------------------------------------------\n');
 
