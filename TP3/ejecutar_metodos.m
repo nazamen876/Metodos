@@ -58,7 +58,8 @@ switch opc_f
     es_tanque = false;
 
   case 3
-    str_in = input('\nIngrese f(x) (ej: 8*x + 0.3*x^2 - 372): ', 's');
+    fprintf('\n');
+    str_in = input('Ingrese f(x) (ej: 8*x + 0.3*x^2 - 372): ', 's');
     if isempty(str_in)
       f   = @(h) pi * h.^2 .* (9 - h) / 3 - 30;
       df  = @(h) 6*pi*h - pi*h.^2;
@@ -77,7 +78,7 @@ switch opc_f
       endif
       f = str2func(str_in);
 
-      % Derivadas numericas para Newton-Raphson si no se ingresan
+      % Derivadas numericas para Newton-Raphson si no se ingresan analiticas
       h_step = 1e-6;
       df  = @(x) (f(x + h_step) - f(x - h_step)) / (2 * h_step);
       d2f = @(x) (f(x + h_step) - 2*f(x) + f(x - h_step)) / (h_step^2);
@@ -173,7 +174,11 @@ fprintf('\nIntervalo seleccionado: [%.4f, %.4f]\n', a, b);
 % ------------------------------------------------------------------------------
 % PASO 4: CONFIGURACION DE TOLERANCIA
 % ------------------------------------------------------------------------------
-tol_in = input('\nTolerancia de error [default 1e-4]: ');
+fprintf('\n------------------------------------------------------------\n');
+fprintf('PASO 4: CONFIGURACION DE TOLERANCIA\n');
+fprintf('------------------------------------------------------------\n');
+
+tol_in = input('Tolerancia de error [default 1e-4]: ');
 if isempty(tol_in), tol = 1e-4; else, tol = tol_in; endif
 
 max_iter = 100;
@@ -182,7 +187,7 @@ max_iter = 100;
 % PASO 5: EJECUCION DE LOS METODOS
 % ------------------------------------------------------------------------------
 fprintf('\n------------------------------------------------------------\n');
-fprintf('PASO 4: EJECUCION DE METODOS\n');
+fprintf('PASO 5: EJECUCION DE METODOS\n');
 fprintf('------------------------------------------------------------\n');
 
 % 1. Metodo de Interpolacion Lineal
@@ -206,7 +211,7 @@ t_nr = toc;
 cpu_nr = cputime - c0_nr;
 
 % ------------------------------------------------------------------------------
-% PASO 6: COMPARACION Y RESULTADOS FINALES
+% RESULTADOS FINALES Y COMPARACION
 % ------------------------------------------------------------------------------
 fprintf('\n------------------------------------------------------------\n');
 fprintf('RESULTADOS FINALES Y COMPARACION\n');
@@ -222,4 +227,3 @@ fprintf('  Tolerancia : %.1e\n', tol);
 fprintf('  f(Raiz IL) : %.2e\n', f(raiz_il));
 fprintf('  f(Raiz NR) : %.2e\n', f(raiz_nr));
 fprintf('------------------------------------------------------------\n');
-

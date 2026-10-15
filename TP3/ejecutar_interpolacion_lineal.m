@@ -15,7 +15,6 @@ carpeta = fileparts(mfilename('fullpath'));
 addpath(carpeta);
 addpath(fullfile(carpeta, '..'));
 addpath(fullfile(carpeta, 'Interpolacion Lineal'));
-addpath(fullfile(carpeta, 'Intervalo Medio'));
 
 fprintf('Interpolacion Lineal\n\n');
 
@@ -48,7 +47,8 @@ switch opc_f
     dx_def = 25;
     es_tanque = false;
   case 3
-    str_in = input('\nIngrese f(x) (ej: 8*x + 0.3*x^2 - 372): ', 's');
+    fprintf('\n');
+    str_in = input('Ingrese f(x) (ej: 8*x + 0.3*x^2 - 372): ', 's');
     if isempty(str_in)
       f = @(h) pi * h.^2 .* (9 - h) / 3 - 30;
       nombre_var = 'h';
@@ -164,7 +164,7 @@ if isempty(tol_in), tol = 1e-4; else, tol = tol_in; endif
 max_iter_in = input('Maximo de iteraciones [default 100]: ');
 if isempty(max_iter_in), max_iter = 100; else, max_iter = max_iter_in; endif
 
-% Medicion de tiempo con tic/toc y cputime (igual que en Ejercicio1Practico3)
+% Medicion de tiempo con tic/toc y cputime
 tic;
 c0 = cputime;
 
@@ -174,7 +174,7 @@ tiempo_toc = toc;
 tiempo_cpu = cputime - c0;
 
 % ------------------------------------------------------------------------------
-% PASO 5: RESULTADOS Y MEDICION DE TIEMPOS
+% RESULTADOS Y MEDICION DE TIEMPOS
 % ------------------------------------------------------------------------------
 fprintf('\n------------------------------------------------------------\n');
 fprintf('RESULTADOS FINALES\n');
