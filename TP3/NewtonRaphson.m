@@ -9,7 +9,7 @@ function [x, it] = NewtonRaphson(f,a,b, tol)
   df = matlabFunction(dfs, 'vars', xs);
   d2f = matlabFunction(d2fs, 'vars', xs);
 
-  t = linspace(a, b, 2001);
+  t = linspace(a, b);
 
 
   %--- Verificación de Condiciones de Fourier ---
