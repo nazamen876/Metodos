@@ -1,20 +1,19 @@
-x0 = 0.35;
-h = 0.3;
+function P = NGAscendente(x, vectorX, dif)
+  h = vectorX(2) - vectorX(1);
 
-x = [0.2 0.5 0.8 1.1 1.4];
-y = [0.258 2.535 4.902 6.722 10.704];
+  u = (x - vectorX(1)) / h;
+  display(u);
 
-dif = tablaDiferencias(x, y);
-
-display(x(1));
-function P = NGAscendente(x, h, dif)
-  u = (x0 - x(1)) / h;
   P = 0;
-
   producto = 1;
-  for i = 1 : length(dif) - 1
-    % hay flaquezas aca
-    producto = producto * (u - (k-1));
-    P = P + producto / factorial(k) * dif(k+1);
+  for i = 1 : length(dif)
+    % ya no hay flaquezas aca
+    display(producto);
+      P = P + dif(i) / factorial(i-1) * producto;
+      producto = producto * (u - (i-1));
+
+    display(P);
   end
+
+
 endfunction
