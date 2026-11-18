@@ -110,7 +110,7 @@ if (opcion == 1)
   % RESOLUCION MEDIANTE EL METODO DE GAUSS
   % (La funcion gauss imprime paso a paso toda la triangulacion y sustitucion)
   % ------------------------------------------------------------------------------
-  [x, M_triang] = gauss(M, dig, true);
+  [x, M_triang] = gauss(M, dig);
 
   % ------------------------------------------------------------------------------
   % RESPUESTAS A LAS CONSIGNAS (SI ES EL EJERCICIO 1)
