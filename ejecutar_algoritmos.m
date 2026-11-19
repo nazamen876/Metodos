@@ -7,6 +7,7 @@ if ~isempty(carpeta)
 endif
 
 addpath(fullfile(pwd, 'TP4'));
+addpath(fullfile(pwd, 'TP5'));
 
 
 opcion = input("Que algoritmo desea ejecutar? (1 - Eliminacion de Gauss/ 2 - Interpolacion Inversa Lineal): ");
