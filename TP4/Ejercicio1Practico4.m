@@ -8,7 +8,6 @@ endif
 
 % ==============================================================================
 % TRABAJO PRACTICO N° 4 - SISTEMAS DE ECUACIONES LINEALES NO HOMOGENEOS
-% METODO DE ELIMINACION DE GAUSS CON PIVOTEO PARCIAL
 % ==============================================================================
 
 fprintf('======================================================================\n');

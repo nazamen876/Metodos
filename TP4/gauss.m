@@ -3,10 +3,6 @@ function [x, M] = gauss(M, dig)
   % ELIMINACION DE GAUSS CON PIVOTEO PARCIAL Y SUSTITUCION REGRESIVA
   % ============================================================================
   %
-  % Resuelve el sistema lineal A * x = b transformando la matriz aumentada
-  % [A | b] en una matriz triangular superior [U | c] y despejando luego
-  % las incognitas de atras hacia adelante.
-  %
   % Parametros:
   %   M:   matriz aumentada [A | b] de dimension n x (n+1)
   %   dig: (opcional) cantidad de cifras significativas para simular
